@@ -19,15 +19,8 @@ RUN if [ "$CLOUDREVE_VERSION" = "latest" ]; then \
     curl -sL https://github.com/cloudreve/Cloudreve/releases/download/$CLOUDREVE_VERSION/cloudreve_${CLOUDREVE_VERSION}_linux_amd64.tar.gz | tar -zx && \
     chmod +x cloudreve
 
-# 创建 Aria2 数据目录并设置权限
-RUN mkdir -p /data/aria2 && \
-    chmod -R 766 /data/aria2
-
 # 暴露端口
 EXPOSE 5212
-
-# 声明数据卷
-VOLUME ["/cloudreve/uploads", "/cloudreve/avatar", "/data", "/cloudreve/conf.ini"]
 
 # 启动脚本
 COPY entrypoint.sh /
